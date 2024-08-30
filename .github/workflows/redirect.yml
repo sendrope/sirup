@@ -1,0 +1,27 @@
+name: Redirect with Secret Check
+
+on:
+  workflow_dispatch: # اجرای دستی
+  workflow_call:     # اجرای از طریق یک درخواست
+
+jobs:
+  redirect:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check for Secret
+      run: |
+        if [ "${{ secrets.REDIRECT_SECRET }}" != "${{ github.event.inputs.secret }}" ]; then
+          echo "Invalid secret provided."
+          exit 1
+        fi
+
+    - name: Redirect
+      run: |
+        echo "Redirecting to https://imoviee.com"
+        echo "::set-output name=url::https://imoviee.com"
+
+outputs:
+  url:
+    description: "The URL to redirect to."
+    value: ${{ steps.redirect.outputs.url }}
