@@ -1,6 +1,26 @@
-<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="refresh" content="0; url=https://imoviee.com">
+    <script type="text/javascript">
+        function isInKodularWebView() {
+            var ua = navigator.userAgent || navigator.vendor || window.opera;
+            if (/Android/i.test(ua) && ua.includes("wv")) {
+                return true;
+            }
+            else {
+                window.location.href = "about:blank"; 
+                return false;
+            }
+        }
+
+        function redirectToLink() {
+            if (isInKodularWebView()) {
+                var encodedLink = "aHR0cHM6Ly90bnhpLmdpdGh1Yi5pby9yYXBpbnMvbmFtZS5odG1s";
+                var link = atob(encodedLink);
+                window.location.href = link;
+            }
+        }
+    </script>
 </head>
+<body onload="redirectToLink()">
+</body>
 </html>
