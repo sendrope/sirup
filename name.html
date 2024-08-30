@@ -1,63 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protected Page</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script>
-        // کلید رمزنگاری (همان کلید در پیج اول)
-        const secretKey = "J7$%Gx*W8k@P!zL9fV3#bR6yT1mC&Q2n";
-
-        // آدرس صفحه اول
-        const allowedReferer = "https://tnxi.github.io/rapins/name.html";
-
-        // گرفتن پارامتر رمزگذاری شده از URL
-        function getUrlParameter(name) {
-            name = name.replace(/[\[\]]/g, "\\$&");
-            const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
-            const results = regex.exec(window.location.href);
-            return results ? decodeURIComponent(results[2].replace(/\+/g, " ")) : null;
-        }
-
-        // رمزگشایی آدرس
-        function decryptUrl(encryptedUrl, secretKey) {
-            const bytes = CryptoJS.AES.decrypt(encryptedUrl, secretKey);
-            return bytes.toString(CryptoJS.enc.Utf8);
-        }
-
-        // بررسی ارجاع‌دهنده و رمزگشایی
-        window.onload = function() {
-            const referer = document.referrer;
-            const encryptedUrl = getUrlParameter("data");
-            if (referer !== allowedReferer || !encryptedUrl) {
-                // اگر ارجاع‌دهنده معتبر نیست یا پارامتر داده نشده است، کاربر را به صفحه دیگری هدایت کن
-                window.location.href = "https://example.com/forbidden";
-                return;
-            }
-
-            // رمزگشایی آدرس
-            const decryptedUrl = decryptUrl(encryptedUrl, secretKey);
-            if (decryptedUrl === window.location.href.split("?")[0]) {
-                // اگر همه چیز درست است، پس‌زمینه را مشکی کن و ریدایرکت را انجام بده
-                document.body.style.backgroundColor = "black";
-                setTimeout(() => {
-                    window.location.href = "https://imoviee.com";
-                }, 3000); // ریدایرکت بعد از 3 ثانیه
-            } else {
-                // اگر رمزگشایی درست نبود، به صفحه دیگری هدایت کن
-                window.location.href = "https://example.com/forbidden";
-            }
-        };
-    </script>
-    <style>
-        /* مخفی کردن محتوای صفحه تا زمانی که ارجاع‌دهنده بررسی شود */
-        body {
-            display: none;
-        }
-    </style>
+    <meta http-equiv="refresh" content="0; url=https://imoviee.com">
 </head>
-<body>
-    <p style="color: white;">Redirecting to the destination...</p>
-</body>
 </html>
